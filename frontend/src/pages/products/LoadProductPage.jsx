@@ -1,8 +1,11 @@
 import React from 'react'
+import LoadProductForm from '../../components/products/LoadProductForm'
 
 const LoadProductPage = () => {
   return (
-    <div>LoadProductPage</div>
+    <>
+      <LoadProductForm />
+    </>
   )
 }
 

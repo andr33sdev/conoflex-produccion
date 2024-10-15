@@ -69,7 +69,7 @@ const EngineeringModal = (props) => {
                   initialValues={{
                     inputs: (semifinished?.materials || []).map((material) => ({
                       _id: material._id || "",
-                      name: material.name || "",
+                      code: material.code || "",
                       qty: material.qty || 0,
                     })),
                   }}
@@ -88,18 +88,18 @@ const EngineeringModal = (props) => {
                                 className="flex flex-row items-end"
                               >
                                 <div className="flex flex-col space-y-2 mr-5 w-3/4">
-                                  <label htmlFor={`inputs.${index}.name`}>
-                                    Nombre de Materia Prima #{index + 1}
+                                  <label htmlFor={`inputs.${index}.code`}>
+                                    Código de Materia Prima #{index + 1}
                                   </label>
                                   <Field
                                     as="select"
-                                    name={`inputs.${index}.name`}
+                                    name={`inputs.${index}.code`}
                                     className="border-2 border-gray-300 rounded-md p-1"
                                     onChange={(e) => {
                                       const selectedMaterial =
                                         rawMaterials.find(
                                           (material) =>
-                                            material.name === e.target.value
+                                            material.code === e.target.value
                                         );
                                       const selectedId = selectedMaterial
                                         ? selectedMaterial._id
@@ -108,7 +108,7 @@ const EngineeringModal = (props) => {
                                       const newValue = {
                                         ...input,
                                         _id: selectedId,
-                                        name: value,
+                                        code: value,
                                       };
                                       const inputs = [...values.inputs];
                                       inputs[index] = newValue;
@@ -121,9 +121,9 @@ const EngineeringModal = (props) => {
                                     {rawMaterials.map((rawMaterial) => (
                                       <option
                                         key={rawMaterial._id}
-                                        value={rawMaterial.name}
+                                        value={rawMaterial.code}
                                       >
-                                        {rawMaterial.name}
+                                        {rawMaterial.code}
                                       </option>
                                     ))}
                                   </Field>
@@ -151,7 +151,7 @@ const EngineeringModal = (props) => {
                               <button
                                 type="button"
                                 onClick={() =>
-                                  push({ _id: "", name: "", qty: 0 })
+                                  push({ _id: "", code: "", qty: 0 })
                                 }
                                 className="mt-2 bg-blue-500 hover:bg-blue-400 text-white w-64 px-3 py-1 rounded"
                               >

@@ -24,6 +24,28 @@ exports.getSemifinishedById = async (req, res) => {
   }
 };
 
+// Crear un nuevo semi elaborado
+exports.createSemifinished = async (req, res) => {
+  try {
+    const newSemifinished = new Semifinished({
+      code: req.body.code,
+      name: req.body.name,
+      description: req.body.description,
+      stock: 0,
+      min_stock: 0,
+      color: req.body.color,
+      process: req.body.process,
+      location: req.body.location,
+      materials: [],
+    });
+
+    const savedSemifinished = await newSemifinished.save();
+    res.status(201).json(savedSemifinished);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
 // Actualizar un semielaborado por ID
 exports.updateSemifinishedById = async (req, res) => {
   try {
